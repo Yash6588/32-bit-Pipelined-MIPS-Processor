@@ -1,4 +1,4 @@
-// Verilog code
+// Verilog code for decoder
 module dec6x64(out[63:0], in[5:0]);
 	// inputs , outputs and internal variables declaration
 	input [5:0] in;
@@ -14,5 +14,5 @@ module dec6x64(out[63:0], in[5:0]);
 	dec3x8 dec5(out[47:40], in[2:0], select[5]);
 	dec3x8 dec6(out[55:48], in[2:0], select[6]);
 	dec3x8 dec7(out[63:56], in[2:0], select[7]);
-endmodule	// end of module
+endmodule	// end of module decoder
 	
