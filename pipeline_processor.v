@@ -1,5 +1,7 @@
+// Verilog code for pipelined processor
 module pipeline_processor(out[31:0], zero_flag, ovf_flag, rd[4:0], rs[4:0], rt[4:0], write_mode, read_mode, chip_select,
 									const_amt[4:0],amt_sel,logic_func[1:0],shift_func[1:0],add_sub,final_func[1:0]);
+	// inputs, outputs and internal veriables declaration
 	input [4:0] rd, rs, rt;
 	input [4:0] const_amt;
 	input [1:0] amt_sel, logic_func, shift_func, final_func;
@@ -8,14 +10,13 @@ module pipeline_processor(out[31:0], zero_flag, ovf_flag, rd[4:0], rs[4:0], rt[4
 	wire [4:0] rd0out, rd1out, rd2out, rd3out, rd4out;
 	wire [4:0] rs0out;
 	wire [4:0] rt0out;
-	//reg [31:0] reg_rs_out, reg_rt_out;
 	wire [31:0] reg_rs_out, reg_rt_out, temp_reg_rs, temp_reg_rt;
-	//reg [31:0] alu_i_out, alu_i1_out;
 	wire [31:0] alu_i_out, alu_i1_out;
 	wire [31:0] istream = 32'bz;
 	wire [31:0] mux_out1, mux_out2, mux_out3, mux_out4;
 	wire select_mux1, select_mux2, select_mux3, select_mux4;
 	output zero_flag, ovf_flag;
+	// code start
 	delay rd0(rd0out[4:0], rd[4:0]);
 	delay rd1(rd1out[4:0], rd0out[4:0]);
 	delay rd2(rd2out[4:0], rd1out[4:0]);
@@ -39,8 +40,4 @@ module pipeline_processor(out[31:0], zero_flag, ovf_flag, rd[4:0], rs[4:0], rt[4
 					shift_func[1:0], add_sub, final_func[1:0]);
 	register_storage alu_i_temp(alu_i1_out[31:0], alu_i_out[31:0], 1'b1);
 	register_storage alu_i1_temp(out[31:0], alu_i1_out[31:0], 1'b1);
-	/*initial begin
-		alu_i_out = alu_i1_out;
-	end*/
-	//assign out = alu_i1_out;
-endmodule
+endmodule	// end of module pipelined processor
