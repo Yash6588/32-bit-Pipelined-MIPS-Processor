@@ -1,8 +1,11 @@
+// Verilog code for ALU Adder
 module alu_addr(out[31:0], Cout[31:0], x[31:0], y[31:0], Cin);
+	// input and output ports declaration
 	input [31:0] x,y;
 	input Cin;
 	wire w1;
 	output [31:0] out, Cout;
+	// code start
 	fulladdr f1(out[0], Cout[0], x[0], y[0], Cin);
 	fulladdr f2(out[1], Cout[1], x[1], y[1], Cout[0]);
 	fulladdr f3(out[2], Cout[2], x[2], y[2], Cout[1]);
@@ -35,4 +38,4 @@ module alu_addr(out[31:0], Cout[31:0], x[31:0], y[31:0], Cin);
 	fulladdr f30(out[29], Cout[29], x[29], y[29], Cout[28]);
 	fulladdr f31(out[30], Cout[30], x[30], y[30], Cout[29]);
 	fulladdr f32(out[31], Cout[31], x[31], y[31], Cout[30]);
-endmodule
+endmodule	// end of module Adder
