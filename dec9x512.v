@@ -1,8 +1,11 @@
+// Verilog code
 module dec9x512(out[511:0], in[8:0]);
+	// inputs, outputs and internal variable declaration
 	input [8:0] in;
 	output [511:0] out;
 	wire [7:0] select;
 	wire [511:0] preout;
+	// code start
 	dec3x8 dec_main(select[7:0], in[8:6]);
 	dec6x64 dec0(preout[63:0], in[5:0]);
 	assign out[63:0] = select[0] ? preout[63:0] : preout[63:0] & 1'b0;
@@ -20,4 +23,4 @@ module dec9x512(out[511:0], in[8:0]);
 	assign out[447:384] = select[6] ? preout[447:384] : preout[447:384] & 1'b0;
 	dec6x64 dec7(preout[511:448], in[5:0]);
 	assign out[511:448] = select[7] ? preout[511:448] : preout[511:448] & 1'b0;
-endmodule
+endmodule	// end of module
