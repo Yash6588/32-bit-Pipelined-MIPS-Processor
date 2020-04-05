@@ -1,4 +1,4 @@
-// Verilog code
+// Verilog code for decoder
 module dec9x512(out[511:0], in[8:0]);
 	// inputs, outputs and internal variable declaration
 	input [8:0] in;
@@ -23,4 +23,4 @@ module dec9x512(out[511:0], in[8:0]);
 	assign out[447:384] = select[6] ? preout[447:384] : preout[447:384] & 1'b0;
 	dec6x64 dec7(preout[511:448], in[5:0]);
 	assign out[511:448] = select[7] ? preout[511:448] : preout[511:448] & 1'b0;
-endmodule	// end of module
+endmodule	// end of module decoder
