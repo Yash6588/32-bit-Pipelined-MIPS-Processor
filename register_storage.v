@@ -1,9 +1,12 @@
+// Verilog code for resister storage
 module register_storage(ostream[31:0], istream[31:0], write_op);
+	// inputs, outputs and internal variables declaration
 	input write_op;
 	input [31:0] istream;
 	output [31:0] ostream;
 	wire [31:0] bits;
 	wire [31:0] notbits;
+	// code start
 	D_FlipFlop mem0(bits[0], notbits[0], istream[0], write_op);
 	D_FlipFlop mem1(bits[1], notbits[1], istream[1], write_op);
 	D_FlipFlop mem2(bits[2], notbits[2], istream[2], write_op);
@@ -37,5 +40,5 @@ module register_storage(ostream[31:0], istream[31:0], write_op);
 	D_FlipFlop mem30(bits[30], notbits[30], istream[30], write_op);
 	D_FlipFlop mem31(bits[31], notbits[31], istream[31], write_op);
 	assign ostream = bits;
-endmodule
+endmodule  // end of module resister storage
 	
