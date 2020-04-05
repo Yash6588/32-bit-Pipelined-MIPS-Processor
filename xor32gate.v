@@ -1,8 +1,11 @@
+// Verilog code for 32 bit XORgate
 module xor32gate(OUT[31:0], IN1[31:0], IN2);
+	// inputs, outputs and internal variables declaration
 	input [31:0] IN1;
 	input IN2;
 	wire [31:0] ext;
 	output [31:0] OUT;
+	// code start
 	assign ext[0] = IN2;
 	assign ext[1] = IN2;
 	assign ext[2] = IN2;
@@ -36,4 +39,4 @@ module xor32gate(OUT[31:0], IN1[31:0], IN2);
 	assign ext[30] = IN2;
 	assign ext[31] = IN2;
 	assign OUT = IN1 ^ ext;
-endmodule
+endmodule	//end of module xorgate
