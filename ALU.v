@@ -1,5 +1,7 @@
+// Verilog module for ALU
 module ALU(out[31:0],zero_flag,ovf_flag,x[31:0],y[31:0],const_amt[4:0],amt_sel[1:0],logic_func[1:0],shift_func[1:0]
 				,add_sub,final_func[1:0]);
+	//inputs, outputs and internal variables declaration
 	output [31:0] out;
 	output zero_flag, ovf_flag;
 	wire [31:0] out_addr, out_carry;
@@ -13,6 +15,7 @@ module ALU(out[31:0],zero_flag,ovf_flag,x[31:0],y[31:0],const_amt[4:0],amt_sel[1
 	input [4:0] const_amt;
 	input [1:0] amt_sel, logic_func, shift_func, final_func;
 	input add_sub;
+	
 	mux2x1 shift_val_select(final_shift_amt[4:0], const_amt[4:0], x[4:0], amt_sel[1:0]);
 	//shifter shift(no_shift[31:0], logic_left[31:0], logic_right[31:0], arith_right[31:0], y[31:0], final_shift_amt[4:0]);
 	mux4x1 shift_out(shifter_final_output[31:0], no_shift[31:0], logic_left[31:0], logic_right[31:0], arith_right[31:0], shift_func[1:0]);
