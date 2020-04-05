@@ -1,4 +1,6 @@
+// Verilog code for register file
 module register_file(ostream[31:0], istream[31:0], addr[4:0], write_mode, read_mode, chip_select);
+	// inputs, outputs and internal variables declaration
 	input [31:0] istream;
 	input write_mode, read_mode, chip_select;
 	input [4:0] addr;
@@ -14,6 +16,7 @@ module register_file(ostream[31:0], istream[31:0], addr[4:0], write_mode, read_m
 					ff_out25, ff_out26, ff_out27, ff_out28, ff_out29, ff_out30, ff_out31;
 	wire [31:0] bufout;
 	wire write_op, read_op;
+	// code start
 	read_write_decision r_w_op(write_op, read_op, read_mode, chip_select, write_mode);
 	decoder_regfile dec(select_reg[31:0], addr[4:0]);
 	register_storage reg0(reg_out0[31:0],istream[31:0], select_reg[0] & write_op);
@@ -115,4 +118,4 @@ module register_file(ostream[31:0], istream[31:0], addr[4:0], write_mode, read_m
 	assign data_bus = ff_out31[31:0];
 	tristate outbuf(bufout, read_op, data_bus);
 	assign ostream = bufout;
-endmodule	
+endmodule	// end of module register file
