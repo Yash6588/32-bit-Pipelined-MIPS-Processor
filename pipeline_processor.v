@@ -1,5 +1,5 @@
 module pipeline_processor(out[31:0], zero_flag, ovf_flag, rd[4:0], rs[4:0], rt[4:0], write_mode, read_mode, chip_select,
-									const_amt[4:0],amt_sel[1:0],logic_func[1:0],shift_func[1:0],add_sub,final_func[1:0]);
+									const_amt[4:0],amt_sel,logic_func[1:0],shift_func[1:0],add_sub,final_func[1:0]);
 	input [4:0] rd, rs, rt;
 	input [4:0] const_amt;
 	input [1:0] amt_sel, logic_func, shift_func, final_func;
@@ -35,7 +35,7 @@ module pipeline_processor(out[31:0], zero_flag, ovf_flag, rd[4:0], rs[4:0], rt[4
 	mux32b2x1 mux3(mux_out3[31:0], reg_rs_out[31:0], out[31:0], select_mux3);
 	mux32b2x1 mux1(mux_out1[31:0], mux_out3[31:0], alu_i1_out[31:0], select_mux1);
 	mux32b2x1 mux2(mux_out2[31:0], mux_out4[31:0], alu_i1_out[31:0], select_mux2);
-	ALU alumod(alu_i_out[31:0], zero_flag, ovf_flag, mux_out1[31:0], mux_out2[31:0], const_amt[4:0], amt_sel[1:0], logic_func[1:0], 
+	ALU alumod(alu_i_out[31:0], zero_flag, ovf_flag, mux_out1[31:0], mux_out2[31:0], const_amt[4:0], amt_sel, logic_func[1:0], 
 					shift_func[1:0], add_sub, final_func[1:0]);
 	register_storage alu_i_temp(alu_i1_out[31:0], alu_i_out[31:0], 1'b1);
 	register_storage alu_i1_temp(out[31:0], alu_i1_out[31:0], 1'b1);
