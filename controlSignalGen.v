@@ -1,11 +1,13 @@
+// Verilog code for controlsignal
 module controlSignalGen(write_mode, shift_func[1:0], ALU_func[1:0], logic_func[1:0], ALUSrc, add_sub, read_mode, 
 								amt_sel, PCSrc, chip_select, opcode[5:0], fn[5:0]);
+	// inputs, outputs and internal variables declaration
 	input [5:0] opcode, fn;
 	output write_mode, ALUSrc, add_sub, read_mode, amt_sel, PCSrc, chip_select;
 	output [1:0] shift_func, ALU_func, logic_func;
 	wire [63:0] op_dec_out;
 	wire [63:0] fn_dec_out;
-	
+	// code start
 	dec6x64 dec_op(op_dec_out[63:0], opcode[5:0]);
 	dec6x64 dec_fn(fn_dec_out[63:0], fn[5:0]);
 	
@@ -29,5 +31,5 @@ module controlSignalGen(write_mode, shift_func[1:0], ALU_func[1:0], logic_func[1
 	assign ALU_func[0] = (fn_dec_out[42] | op_dec_out[10]) | (logic);
 	assign ALU_func[1] = arith | logic;
 	
-endmodule
+endmodule	// end of module controlsignal
 	
